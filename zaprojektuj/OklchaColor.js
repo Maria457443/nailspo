@@ -13,9 +13,8 @@ export class OklchaColor {
 	hueComponent;
 	alphaComponent;
 	convertToRgba() {
-		const hRad = this.hueComponent * Math.PI / 180;
-		const a = this.chromaComponent * Math.cos(hRad);
-		const b_ = this.chromaComponent * Math.sin(hRad);
+		const a = this.chromaComponent * Math.cos(this.hueComponent);
+		const b_ = this.chromaComponent * Math.sin(this.hueComponent);
 		const l_ = this.lightnessComponent + 0.3963377774 * a + 0.2158037573 * b_;
 		const m_ = this.lightnessComponent - 0.1055613458 * a - 0.0638541728 * b_;
 		const s_ = this.lightnessComponent - 0.0894841775 * a - 1.2914855480 * b_;

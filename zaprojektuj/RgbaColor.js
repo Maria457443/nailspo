@@ -21,7 +21,23 @@ export class RgbaColor {
 		const greenComponent = new ComponentOfRgbColor(valueOfGreenComponentOfColor);
 		const blueComponent = new ComponentOfRgbColor(valueOfBlueComponentOfColor);
 		const alphaComponent = new AlphaComponentOfRgbaColor(valueOfAlphaComponentOfColor);
-		const color = new RgbaColor(redComponent, greenComponent, blueComponent, alphaComponent);
+		const color = new this(redComponent, greenComponent, blueComponent, alphaComponent);
+		return color;
+	}
+	static createFrom0To255Integer(valueOfRedComponent, valueOfGreenComponent, valueOfBlueComponent, valueOfAlphaComponent) {
+		const redComponent = new ComponentOfRgbColor(valueOfRedComponent);
+		const greenComponent = new ComponentOfRgbColor(valueOfGreenComponent);
+		const blueComponent = new ComponentOfRgbColor(valueOfBlueComponent);
+		const alphaComponent = new AlphaComponentOfRgbaColor(valueOfAlphaComponent);
+		const color = new this(redComponent, greenComponent, blueComponent, alphaComponent);
+		return color;
+	}
+	static createFrom0To1Float(valueOfRedComponent, valueOfGreenComponent, valueOfBlueComponent, valueOfAlphaComponent) {
+		const redComponent = ComponentOfRgbColor.createFrom0To1Float(valueOfRedComponent);
+		const greenComponent = ComponentOfRgbColor.createFrom0To1Float(valueOfGreenComponent);
+		const blueComponent = ComponentOfRgbColor.createFrom0To1Float(valueOfBlueComponent);
+		const alphaComponent = AlphaComponentOfRgbaColor.createFrom0To1Float(valueOfAlphaComponent);
+		const color = new this(redComponent, greenComponent, blueComponent, alphaComponent);
 		return color;
 	}
 	alphaComponent;
@@ -43,9 +59,9 @@ export class RgbaColor {
 		const a = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_;
 		const b_ = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_;
 		const c = Math.sqrt(a * a + b_ * b_);
-		let h = Math.atan2(b_, a) * 180 / Math.PI;
+		let h = Math.atan2(b_, a);
 		if (h < 0) {
-			h = h + 360;
+			h = h + 2 * Math.PI;
 		}
 		const convertedThis = new OklchaColor(l__, c, h, this.alphaComponent.convertTo0To1Float());
 		return convertedThis;

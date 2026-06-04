@@ -41,4 +41,10 @@ export class Coordinates {
 		const isThisInDimensions = isXOfThisInDimensions && isYOfThisInDimensions;
 		return isThisInDimensions;
 	}
+	round() {
+		const xOfRoundedCoordinates = Math.round(this.x);
+		const yOfRoundedCoordinates = Math.round(this.y);
+		const roundedCoordinates = new Coordinates(xOfRoundedCoordinates, yOfRoundedCoordinates);
+		return roundedCoordinates;
+	}
 }

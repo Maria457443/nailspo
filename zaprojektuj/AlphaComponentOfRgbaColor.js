@@ -5,17 +5,20 @@ export class AlphaComponentOfRgbaColor {
 	}
 	static createFrom0To255Float(value) {
 		const valueOfComponent = Math.max(0, Math.min(Math.round(value), 255));
-		const component = new AlphaComponentOfRgbaColor(valueOfComponent);
+		const component = new this(valueOfComponent);
 		return component;
 	}
 	static createFrom0To1Float(value) {
 		const valueOfComponent = Math.max(0, Math.min(Math.round(value * 255), 255));
-		const component = new AlphaComponentOfRgbaColor(valueOfComponent);
+		const component = new this(valueOfComponent);
 		return component;
 	}
 	convertTo0To1Float() {
 		const normalizedValueOfThis = this.value / 255;
 		return normalizedValueOfThis;
+	}
+	convertTo0To255Integer() {
+		return this.value;
 	}
 	computeDistanceTo(otherComponent) {
 		const distance = Math.abs(this.value - otherComponent.value);

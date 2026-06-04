@@ -27,15 +27,44 @@
 		</header>
 		<main>
 			<div class="ogranicznik">
-				<label>
-					<span>
-						Kolor:
-					</span>
-					<input name="color-to-apply" type="color" value="#000000">
-				</label>
-				<canvas id="displayer-of-input-image"></canvas>
-				<canvas id="displayer-of-mask-image"></canvas>
-				<canvas id="displayer-of-output-image"></canvas>
+				<div class="controls">
+					<label>
+						<span>
+							Kolor:
+						</span>
+						<input name="color-to-apply" type="color" value="#000000">
+					</label>
+				</div>
+				<div class="previews">
+					<figure class="preview preview--input">
+						<figcaption>Input</figcaption>
+						<canvas id="displayer-of-input-image"></canvas>
+					</figure>
+					<figure class="preview" hidden>
+						<figcaption>H</figcaption>
+						<canvas id="displayer-of-input-h-image"></canvas>
+					</figure>
+					<figure class="preview" hidden>
+						<figcaption>C</figcaption>
+						<canvas id="displayer-of-input-c-image"></canvas>
+					</figure>
+					<figure class="preview" hidden>
+						<figcaption>L</figcaption>
+						<canvas id="displayer-of-input-l-image"></canvas>
+					</figure>
+					<figure class="preview" hidden>
+						<figcaption>A</figcaption>
+						<canvas id="displayer-of-input-a-image"></canvas>
+					</figure>
+					<figure class="preview" hidden>
+						<figcaption>Mask</figcaption>
+						<canvas id="displayer-of-mask-image"></canvas>
+					</figure>
+					<figure class="preview preview--output">
+						<figcaption>Output</figcaption>
+						<canvas id="displayer-of-output-image"></canvas>
+					</figure>
+				</div>
 			</div>
 		</main>
 		<footer>

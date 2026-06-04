@@ -1,0 +1,81 @@
+main {
+	padding: 1.5rem 0 2rem;
+}
+
+.ogranicznik {
+	gap: 1.25rem;
+	padding: 0 1rem;
+}
+
+.controls {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.controls label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.75rem 1rem;
+	border-radius: 999px;
+	background: color-mix(in oklch, var(--szary-100) 76%, transparent);
+	border: 1px solid color-mix(in oklch, var(--lawendowy-020) 30%, transparent);
+	box-shadow: 0 0.75rem 2rem color-mix(in oklch, var(--lawendowy-010) 15%, transparent);
+}
+
+.controls input[type="color"] {
+	width: 3rem;
+	height: 2rem;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	border-radius: 0.5rem;
+}
+
+.previews {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+	gap: 1rem;
+	align-items: start;
+}
+
+.preview {
+	margin: 0;
+	padding: 0.75rem;
+	border-radius: 1rem;
+	background: color-mix(in oklch, var(--szary-100) 74%, transparent);
+	border: 1px solid color-mix(in oklch, var(--lawendowy-020) 28%, transparent);
+	box-shadow: 0 0.75rem 2rem color-mix(in oklch, var(--lawendowy-010) 12%, transparent);
+	display: grid;
+	gap: 0.5rem;
+}
+
+.preview--input {
+	grid-column: 1 / -1;
+}
+
+.preview--output {
+	grid-column: 1 / -1;
+}
+
+.preview figcaption {
+	font-size: 0.9rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--lawendowy-040);
+}
+
+.preview canvas {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 0.75rem;
+	background: var(--szary-100);
+	box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--lawendowy-020) 22%, transparent);
+}
+figure[hidden] {
+	display: none;
+}

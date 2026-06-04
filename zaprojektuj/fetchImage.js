@@ -19,6 +19,5 @@ export async function fetchImage(path) {
 	const contextOfCanvas = canvas.getContext("2d");
 	contextOfCanvas.drawImage(imageElement, 0, 0);
 	const image = contextOfCanvas.getImageData(0, 0, imageElement.width, imageElement.height);
-	const scaledImage = scaleImage(image, 0.25);
-	return scaledImage;
+	return image;
 }
