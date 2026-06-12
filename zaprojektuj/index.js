@@ -1,45 +1,51 @@
+import {fetchImage} from "./fetchImage.js";
+import {scaleImageUntil} from "./scaleImageUntil.js";
+import {Dimensions} from "./Dimensions.js";
+import {removeBackgroundCopying} from "./removeBackgroundCopying.js";
 import {State} from "./State.js";
 import {RgbColor} from "./RgbColor.js";
-import {fetchImage} from "./fetchImage.js";
-import {scaleImage} from "./scaleImage.js";
-import {removeBackground} from "./removeBackground.js";
-const displayerOfInputImage = document.getElementById("displayer-of-input-image");
-const displayerOfInputHueImage = document.getElementById("displayer-of-input-h-image");
-const displayerOfInputChromaImage = document.getElementById("displayer-of-input-c-image");
-const displayerOfInputLightnessImage = document.getElementById("displayer-of-input-l-image");
-const displayerOfInputAlphaImage = document.getElementById("displayer-of-input-a-image");
-const displayerOfMaskImage = document.getElementById("displayer-of-mask-image");
-const displayerOfOutputImage = document.getElementById("displayer-of-output-image");
-const colorInput = document.querySelector('input[name="color-to-apply"]');
-const fileInput = document.querySelector('input[name="hand-image-upload"]');
-const initialTint = RgbColor.createFromHashCssString(colorInput.value);
-const state = new State(
-	displayerOfInputImage,
-	displayerOfOutputImage,
+export const view = {
+	displayerOfInputImage: document.getElementById("displayer-of-input-image"),
+	displayerOfInputHueImage: document.getElementById("displayer-of-input-h-image"),
+	displayerOfInputChromaImage: document.getElementById("displayer-of-input-c-image"),
+	displayerOfInputLightnessImage: document.getElementById("displayer-of-input-l-image"),
+	displayerOfInputAlphaImage: document.getElementById("displayer-of-input-a-image"),
+	displayerOfMaskImage: document.getElementById("displayer-of-mask-image"),
+	displayerOfOutputImage: document.getElementById("displayer-of-output-image"),
+	colorInput: document.querySelector('input[name="color-to-apply"]'),
+	fileInput: document.querySelector('input[name="hand-image-upload"]'),
+};
+export const initialTint = RgbColor.createFromHashCssString(view.colorInput.value);
+export const state = new State(
+	view.displayerOfInputImage,
+	view.displayerOfOutputImage,
 	initialTint,
-	displayerOfMaskImage,
-	displayerOfInputHueImage,
-	displayerOfInputChromaImage,
-	displayerOfInputLightnessImage,
-	displayerOfInputAlphaImage,
+	view.displayerOfMaskImage,
+	view.displayerOfInputHueImage,
+	view.displayerOfInputChromaImage,
+	view.displayerOfInputLightnessImage,
+	view.displayerOfInputAlphaImage,
 );
-function handleColorInput(event) {
+view.colorInput.addEventListener("input", handleColorInput);
+view.fileInput.addEventListener("change", handleHandImageUpload);
+const targetDimensions = new Dimensions(600, 600);
+export async function handleHandImageUpload(event) {
+	const file = event.target.files[0];
+	const url = URL.createObjectURL(file);
+	const originalImage = await fetchImage(url);
+	URL.revokeObjectURL(url);
+	const image = removeBackgroundCopying(scaleImageUntil(originalImage, targetDimensions));
+	state.setInputImage(image);
+	return;
+}
+export function handleColorInput(event) {
 	const newTintAsString = event.target.value;
 	const newTint = RgbColor.createFromHashCssString(newTintAsString);
 	state.setTint(newTint);
 	return;
 }
-colorInput.addEventListener("input", handleColorInput);
-fileInput.addEventListener("change", async (event) => {
-	const file = event.target.files[0];
-	if (file) {
-		const url = URL.createObjectURL(file);
-		const image = await fetchImage(url);
-		let imageData = scaleImage(image, 0.6);
-		imageData = removeBackground(imageData);
-		state.setInputImage(imageData);
-		URL.revokeObjectURL(url);
-	}
-});
-const imageData = scaleImage((await fetchImage("./data/raw.png")), 0.6);
-state.setInputImage(imageData);
+// const initialImage = await fetchImage(`./raw.png`);
+// const scaledInitialImage = scaleImageUntil(initialImage, targetDimensions);
+// const initialImageWithRemovedBackground = removeBackgroundCopying(scaledInitialImage);
+// state.setInputImage(initialImageWithRemovedBackground);
+

@@ -16,4 +16,10 @@ export class Dimensions {
 		);
 		return oddifiedThis;
 	}
+	equals(otherDimensions) {
+		const areWidthsEqual = this.width === otherDimensions.width;
+		const areHeightsEqual = this.height === otherDimensions.height;
+		const areDimensionsEqual = areWidthsEqual && areHeightsEqual;
+		return areDimensionsEqual;
+	}
 }
