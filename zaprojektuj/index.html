@@ -34,29 +34,51 @@
 						</span>
 						<input name="color-to-apply" type="color" value="#000000">
 					</label>
+					<label>
+						<span>
+							Twoje zdjęcie:
+						</span>
+						<input name="hand-image-upload" type="file" accept="image/*">
+					</label>
 				</div>
 				<div class="previews">
 					<figure class="preview preview--input">
 						<figcaption>Input</figcaption>
 						<canvas id="displayer-of-input-image"></canvas>
+						<script type="module">
+							import {computeStatisticsOfPosition} from "./computePositionsOfNails.js";
+							import {Coordinates} from "./Coordinates.js";
+							const canvas = document.getElementById(`displayer-of-input-image`);
+							canvas.addEventListener(`click`, function(event) {
+								const boundingRectOfCanvas = canvas.getBoundingClientRect();
+								const position = new Coordinates(
+									event.offsetX / boundingRectOfCanvas.width * canvas.width,
+									event.offsetY / boundingRectOfCanvas.height * canvas.height,
+								).round();
+								const imageOfCanvas = canvas.getContext(`2d`).getImageData(0, 0, canvas.width, canvas.height);
+								const statistics = computeStatisticsOfPosition(imageOfCanvas, position);
+								console.log(statistics);
+								return;
+							});
+						</script>
 					</figure>
-					<figure class="preview" hidden>
+					<figure class="preview">
 						<figcaption>H</figcaption>
 						<canvas id="displayer-of-input-h-image"></canvas>
 					</figure>
-					<figure class="preview" hidden>
+					<figure class="preview">
 						<figcaption>C</figcaption>
 						<canvas id="displayer-of-input-c-image"></canvas>
 					</figure>
-					<figure class="preview" hidden>
+					<figure class="preview">
 						<figcaption>L</figcaption>
 						<canvas id="displayer-of-input-l-image"></canvas>
 					</figure>
-					<figure class="preview" hidden>
+					<figure class="preview">
 						<figcaption>A</figcaption>
 						<canvas id="displayer-of-input-a-image"></canvas>
 					</figure>
-					<figure class="preview" hidden>
+					<figure class="preview">
 						<figcaption>Mask</figcaption>
 						<canvas id="displayer-of-mask-image"></canvas>
 					</figure>

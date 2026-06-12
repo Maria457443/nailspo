@@ -4,7 +4,7 @@ export function applyTintToRgbColor(tint, color, strengthOfMask) {
 	const convertedTint = tint.convertToOklch();
 	const tintedColor = new OklchColor(
 		(0.3 * convertedColor.lightnessComponent + 0.7 * convertedTint.lightnessComponent),
-		(0.3 * convertedColor.chromaComponent + 0.7 * convertedTint.chromaComponent),
+		(0.1 * convertedColor.chromaComponent + 0.9 * convertedTint.chromaComponent),
 		convertedTint.hueComponent,
 	);
 	const convertedTintedColor = tintedColor.convertToRgb();

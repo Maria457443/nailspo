@@ -47,4 +47,16 @@ export class Coordinates {
 		const roundedCoordinates = new Coordinates(xOfRoundedCoordinates, yOfRoundedCoordinates);
 		return roundedCoordinates;
 	}
+	hash() {
+		const hashOfXOfThis = this.x.toString(16);
+		const hashOfYOfThis = this.y.toString(16);
+		const hashOfThis = `${hashOfXOfThis},${hashOfYOfThis}`;
+		return hashOfThis;
+	}
+	equals(otherCoordinates) {
+		const areXsEqual = this.x === otherCoordinates.x;
+		const areYsEqual = this.y === otherCoordinates.y;
+		const areCoordinatesEqual = areXsEqual && areYsEqual;
+		return areCoordinatesEqual;
+	}
 }
