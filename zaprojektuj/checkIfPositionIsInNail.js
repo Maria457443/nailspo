@@ -7,7 +7,7 @@ export function checkIfPositionIsInNail(image, position) {
 		return false;
 	} else {
 		if (
-			statistics.countOfCircularEntriesInProfile >= 8
+			statistics.countOfCircularEntriesInProfile >= 9
 			&& statistics.countOfCloseEntriesInProfile >= 6
 			&& statistics.countOfFarEntriesInProfile >= 5
 		) {

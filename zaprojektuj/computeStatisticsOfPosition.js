@@ -58,10 +58,10 @@ export function computeStatisticsOfPosition(image, position) {
 		}
 	}
 	const countOfCircularEntriesInProfile = profileOfRays.filter(function (scale) {
-		return scale !== null && scale < 1.2;
+		return scale !== null && scale < 1.1;
 	}).length;
 	const countOfCloseEntriesInProfile = profileOfRays.filter(function (scale) {
-		return scale !== null && scale >= 1.2;
+		return scale !== null && scale >= 1.1;
 	}).length;
 	const countOfFarEntriesInProfile = profileOfRays.filter(function (scale) {
 		return scale === null;

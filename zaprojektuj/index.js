@@ -44,8 +44,8 @@ export function handleColorInput(event) {
 	state.setTint(newTint);
 	return;
 }
-// const initialImage = await fetchImage(`./raw.png`);
-// const scaledInitialImage = scaleImageUntil(initialImage, targetDimensions);
-// const initialImageWithRemovedBackground = removeBackgroundCopying(scaledInitialImage);
-// state.setInputImage(initialImageWithRemovedBackground);
+const initialImage = await fetchImage(`./raw.png`);
+const scaledInitialImage = scaleImageUntil(initialImage, targetDimensions);
+const initialImageWithRemovedBackground = removeBackgroundCopying(scaledInitialImage);
+state.setInputImage(initialImageWithRemovedBackground);
 

@@ -4,7 +4,7 @@ import {computePositionsOfNails} from "./computePositionsOfNails.js";
 import {blackRgbaColor} from "./blackRgbaColor.js";
 import {whiteRgbaColor} from "./whiteRgbaColor.js";
 import {HashingSet} from "./HashingSet.js";
-import {fillRegionInMaskBySimilarLightness} from "./fillRegionInMaskBySimilarLightness.js";
+import {fillRegionInMask} from "./fillRegionInMask.js";
 import {ImagePair} from "./ImagePair.js";
 export function computeNailMask(image) {
 	const mask = new ImageData(image.width, image.height);
@@ -20,7 +20,7 @@ export function computeNailMask(image) {
 	const imagePair = new ImagePair(mask, image);
 	for (const position of positionsOfNails) {
 		putRgbaColorIntoImageDataAtPosition(whiteRgbaColor, imagePair.mask, position);
-		fillRegionInMaskBySimilarLightness(imagePair, position, 0.015);
+		fillRegionInMask(imagePair, position, 5);
 		continue;
 	}
 	return mask;
